@@ -4,7 +4,6 @@ namespace ExaminationSystem.Models
 {
     public class Course:BaseModel
     {
-        
         public int CreditHours { get; set; }
         public string Name { get; set; }
 
