@@ -1,6 +1,10 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
 using ExaminationSystem;
+using ExaminationSystem.Helpers;
+using ExaminationSystem.Middlewares;
+using ExaminationSystem.Profiles;
 using Microsoft.AspNetCore.Components.Server;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,8 +17,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new AutoFacModule()));
+builder.Services.AddAutoMapper(typeof(CourseProfile));
 var app = builder.Build();
-
+MappHelper.Mapper = app.Services.GetService<IMapper>();
+app.UseMiddleware<GlobalErrorHandlerMiddleware>();
+app.UseMiddleware<TransactionMiddleware>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
