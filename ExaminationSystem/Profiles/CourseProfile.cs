@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using ExaminationSystem.DTOs;
+using ExaminationSystem.DTOs.CourseDTOs;
 using ExaminationSystem.Models;
-using ExaminationSystem.ViewModels;
+using ExaminationSystem.ViewModels.Course;
 
 namespace ExaminationSystem.Profiles
 {

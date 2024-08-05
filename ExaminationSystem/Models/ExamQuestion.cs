@@ -2,7 +2,7 @@
 
 namespace ExaminationSystem.Models
 {
-    public class ExamQuestion:BaseModel
+    public class ExamQuestion : BaseModel
     {
         [ForeignKey("Exam")]
         public int ExamID { get; set; }

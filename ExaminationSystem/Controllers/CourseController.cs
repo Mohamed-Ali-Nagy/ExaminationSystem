@@ -1,8 +1,9 @@
 ﻿using ExaminationSystem.Data.Enums;
-using ExaminationSystem.DTOs;
+using ExaminationSystem.DTOs.CourseDTOs;
 using ExaminationSystem.Helpers;
 using ExaminationSystem.Services.Courses;
 using ExaminationSystem.ViewModels;
+using ExaminationSystem.ViewModels.Course;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

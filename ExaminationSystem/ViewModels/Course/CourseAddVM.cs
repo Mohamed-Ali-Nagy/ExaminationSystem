@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ExaminationSystem.ViewModels
+namespace ExaminationSystem.ViewModels.Course
 {
     public class CourseAddVM
     {

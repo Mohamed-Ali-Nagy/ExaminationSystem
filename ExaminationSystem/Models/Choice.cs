@@ -2,7 +2,7 @@
 
 namespace ExaminationSystem.Models
 {
-    public class Choice:BaseModel
+    public class Choice : BaseModel
     {
         public string Text { get; set; }
         public bool IsRightAnswer { get; set; }

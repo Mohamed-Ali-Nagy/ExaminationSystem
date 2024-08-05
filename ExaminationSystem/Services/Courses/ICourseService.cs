@@ -1,4 +1,4 @@
-﻿using ExaminationSystem.DTOs;
+﻿using ExaminationSystem.DTOs.CourseDTOs;
 using ExaminationSystem.Models;
 
 namespace ExaminationSystem.Services.Courses

@@ -1,6 +1,6 @@
 ﻿namespace ExaminationSystem.Models
 {
-    public class Instructor:BaseModel
+    public class Instructor : BaseModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

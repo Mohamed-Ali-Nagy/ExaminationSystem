@@ -2,7 +2,7 @@
 
 namespace ExaminationSystem.Models
 {
-    public class Exam:BaseModel
+    public class Exam : BaseModel
     {
         public DateTime StartDate { get; set; }
         public int TotalGrade { get; set; }
@@ -10,7 +10,7 @@ namespace ExaminationSystem.Models
         public int InstructorID { get; set; }
         public Instructor Instructor { get; set; }
         public HashSet<ExamQuestion> ExamQuestions { get; set; } = new HashSet<ExamQuestion>();
-        public HashSet<StudentExam> StudentExams { get; set; } 
+        public HashSet<StudentExam> StudentExams { get; set; }
 
 
 

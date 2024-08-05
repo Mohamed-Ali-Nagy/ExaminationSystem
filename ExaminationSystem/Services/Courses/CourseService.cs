@@ -1,18 +1,21 @@
 ﻿using ExaminationSystem.Data.Enums;
-using ExaminationSystem.DTOs;
+using ExaminationSystem.DTOs.CourseDTOs;
 using ExaminationSystem.Exceptions;
 using ExaminationSystem.Helpers;
 using ExaminationSystem.Models;
 using ExaminationSystem.Repository;
+using ExaminationSystem.Services.StudentsCourses;
 
 namespace ExaminationSystem.Services.Courses
 {
     public class CourseService : ICourseService
     {
         private readonly IRepository<Course> _courseRepository;
-        public CourseService(IRepository<Course> courseRepository)
+        private readonly IStudentCoursesService _studentCoursesService;
+        public CourseService(IRepository<Course> courseRepository,IStudentCoursesService studentCoursesService)
         {
             _courseRepository = courseRepository;
+            _studentCoursesService = studentCoursesService;
         }
 
         public CourseDTO Add(CourseDTO courseDTO)
@@ -35,6 +38,7 @@ namespace ExaminationSystem.Services.Courses
                 throw new BusinessException("Can not find course with that ID",ErrorCode.CourseIDNotFound);
             }
             _courseRepository.Delete(course);
+            _studentCoursesService.DeleteRangeByCourseID(course.ID);
             _courseRepository.SaveChanges();
         }
 

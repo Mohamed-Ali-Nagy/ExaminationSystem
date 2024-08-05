@@ -1,13 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ExaminationSystem.ViewModels
+namespace ExaminationSystem.DTOs.CourseDTOs
 {
-    public class CourseUpdateVM
+    public class CourseDTO
     {
-        [Required]
         public int ID { get; set; }
         public int CreditHours { get; set; }
         public string Name { get; set; }
+        public string InstructorName { get; set; }
         public int InstructorID { get; set; }
     }
 }
