@@ -11,6 +11,9 @@ namespace ExaminationSystem.Profiles
         {
             CreateMap<ChoiceRequestVM, ChoiceRequestDTO>();
             CreateMap<ChoiceRequestDTO, Choice>();
+            CreateMap<ChoiceUpdateVM, ChoiceResponseDTO>();
+            CreateMap<ChoiceResponseDTO, Choice>().ReverseMap();
+            
         }
     }
 }

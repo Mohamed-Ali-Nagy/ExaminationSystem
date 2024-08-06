@@ -7,5 +7,7 @@ namespace ExaminationSystem.Services.Choices
     {
         public bool AddRang(List<ChoiceRequestDTO> entities);
         public bool DeleteByQuestionID(int questionID);
+        public bool UpdateChoicesByQuestion(List<ChoiceResponseDTO> choicesUpdateDTO);
+        public IEnumerable<ChoiceResponseDTO> GetChoicesByQuestionID(int questionID);
     }
 }

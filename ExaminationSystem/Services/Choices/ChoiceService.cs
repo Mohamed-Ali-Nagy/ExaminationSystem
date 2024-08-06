@@ -14,6 +14,10 @@ namespace ExaminationSystem.Services.Choices
         {
             _repository = repository;
         }
+        public IEnumerable<ChoiceResponseDTO> GetChoicesByQuestionID(int questionID)
+        {
+           return _repository.GetAll(ch=>ch.QuestionID == questionID).Map<ChoiceResponseDTO>();
+        }
         public bool AddRang(List<ChoiceRequestDTO> entities)
         {
             if(entities.Count > 4||entities.Count<2)
@@ -50,5 +54,20 @@ namespace ExaminationSystem.Services.Choices
             _repository.SaveChanges(); 
             return true;
         }
+
+        public bool UpdateChoicesByQuestion(List<ChoiceResponseDTO> choicesUpdateDTO)
+        {
+           foreach(ChoiceResponseDTO choiceUpdate in choicesUpdateDTO)
+           {
+                var c=choiceUpdate.MapOne<Choice>();
+               _repository.Update(choiceUpdate.MapOne<Choice>());
+
+           }
+
+           _repository.SaveChanges() ;  
+            return true;
+        }
+
+
     }
 }

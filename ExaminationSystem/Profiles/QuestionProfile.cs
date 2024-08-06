@@ -14,8 +14,8 @@ namespace ExaminationSystem.Profiles
             CreateMap<Question,QuestionResponseDTO>();
             CreateMap<QuestionResponseDTO, Question>().ReverseMap();
             CreateMap<QuestionResponseDTO, QuestionResponseVM>();
-
-
+            CreateMap<QuestionUpdateDTO, Question>();
+            CreateMap<QuestionUpdateVM,QuestionUpdateDTO>();
         }
     }
 }

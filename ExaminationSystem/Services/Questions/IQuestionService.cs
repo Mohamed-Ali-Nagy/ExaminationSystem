@@ -6,5 +6,7 @@ namespace ExaminationSystem.Services.Questions
     {
         public QuestionResponseDTO Add(QuestionRequestDTO questionRequestDTO);
         public QuestionResponseDTO Delete(int id);
+        public QuestionResponseDTO Update(QuestionUpdateDTO questionUpdateDTO);
+        public QuestionResponseDTO Get(int id);
     }
 }

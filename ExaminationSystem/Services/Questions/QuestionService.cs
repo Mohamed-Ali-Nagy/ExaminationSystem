@@ -32,5 +32,19 @@ namespace ExaminationSystem.Services.Questions
             _repository.SaveChanges();
             return question.MapOne<QuestionResponseDTO>();
         }
+
+        public QuestionResponseDTO Update(QuestionUpdateDTO questionUpdateDTO)
+        {
+           Question question = _repository.Update(questionUpdateDTO.MapOne<Question>());
+            _repository.SaveChanges();
+            return question.MapOne<QuestionResponseDTO>();
+
+        }
+
+        public QuestionResponseDTO Get(int id)
+        {
+           Question question= _repository.GetById(id);
+            return question.MapOne<QuestionResponseDTO>();
+        }
     }
 }

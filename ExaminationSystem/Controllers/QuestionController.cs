@@ -51,9 +51,30 @@ namespace ExaminationSystem.Controllers
         }
 
         [HttpPut("Update")]
-        public IActionResult Update(QuestionRequestVM questionRequestVM)
+        public IActionResult Update(QuestionUpdateVM questionUpdateVM)
         {
+            if (!ModelState.IsValid) 
+            {
+                return BadRequest(ModelState);
+            }
+          var questionResponseDTO=  _questionService.Update(questionUpdateVM.MapOne<QuestionUpdateDTO>());
+          var choices=questionUpdateVM.ChoicesVM.Select(ch=>ch.MapOne<ChoiceResponseDTO>()).ToList();
+          _choiceService.UpdateChoicesByQuestion(choices);
+            return Ok(ResultVM<int>.Success(questionResponseDTO.ID, ""));
 
+        }
+
+        [HttpGet("Get")]
+        public IActionResult Get(int id)
+        {
+            var question=_questionService.Get(id);
+            var choices=_choiceService.GetChoicesByQuestionID(id);
+            QuestionChoicesVM questionChoicesVM = new QuestionChoicesVM()
+            {
+                Question=question,
+                Choices=choices
+            };
+            return Ok(questionChoicesVM);
         }
     }
 }

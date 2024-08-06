@@ -17,6 +17,6 @@ namespace ExaminationSystem.ViewModels.QuestionsVMs
         [Required]
         public int InstructorID { get; set; }
         [Required]
-        public List<ChoiceRequestVM> ChoicesVM { get; set; }
+        public List<ChoiceUpdateVM> ChoicesVM { get; set; }
     }
 }
