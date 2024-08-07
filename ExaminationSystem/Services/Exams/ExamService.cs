@@ -29,16 +29,21 @@ namespace ExaminationSystem.Services.Exams
             _repository.SaveChanges();
             return exam.ID;
         }
-
-        //public void Delete(int id)
-        //{
-        //    Exam exam= _repository.GetById(id);
-        //    if (exam == null)
-        //    {
-        //        throw new BusinessException("Can not find exam with that ID", ErrorCode.ExamIDNotFound);
-        //    }
-        //    _repository.Delete(exam);
-        //    _repository.SaveChanges();
-        //}
+        public ExamResponseDTO Update(ExamUpdateDTO examUpdateDTO)
+        {
+            var exam=_repository.Update(examUpdateDTO.MapOne<Exam>());
+            _repository.SaveChanges();
+            return exam.MapOne<ExamResponseDTO>();
+        }
+        public void Delete(int id)
+        {
+            Exam exam = _repository.GetById(id);
+            if (exam == null)
+            {
+                throw new BusinessException("Can not find exam with that ID", ErrorCode.ExamIDNotFound);
+            }
+            _repository.Delete(exam);
+            _repository.SaveChanges();
+        }
     }
 }

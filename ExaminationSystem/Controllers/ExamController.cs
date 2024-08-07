@@ -35,5 +35,24 @@ namespace ExaminationSystem.Controllers
             return Ok(ResultVM<int>.Success(examID, ""));
         }
 
+        [HttpPut("Update")]
+        public IActionResult Update(ExamUpdateVM examUpdateVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var examDTO=_examService.Update(examUpdateVM.MapOne<ExamUpdateDTO>());
+            return Ok(ResultVM<int>.Success(examDTO.ID, ""));
+        }
+
+        [HttpDelete("Delete")]
+        public IActionResult Delete(int id)
+        {
+            _examsQuestionsService.DeleteExamID(id);
+            _examService.Delete(id);
+            return Ok(ResultVM<bool>.Success(true));
+        }
+
     }
 }

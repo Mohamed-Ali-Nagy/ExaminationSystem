@@ -33,5 +33,19 @@ namespace ExaminationSystem.Services.ExamsQuestions
             return _repository.GetAll(q => q.QuestionID == questionID).Map<ExamsQuestionsDTO>();
 
         }
+
+        public void DeleteQuestionID(int questionID)
+        {
+            var examsQuestions = _repository.GetAll(q=>q.QuestionID== questionID);
+            _repository.DeleteRange(examsQuestions);
+            _repository.SaveChanges();
+        }
+        public void DeleteExamID(int examID)
+        {
+            var examsQuestions=_repository.GetAll(e=>e.ExamID== examID);    
+            _repository.DeleteRange(examsQuestions);
+            _repository.SaveChanges();
+        }
+
     }
 }

@@ -8,5 +8,7 @@ namespace ExaminationSystem.Services.ExamsQuestions
         public IEnumerable<ExamsQuestionsDTO> GetExamsQuestionsByExamID(int ExamID);
         public void Add(ExamsQuestionsDTO examsQuestionsDTO);
         public void AddRange(List<ExamsQuestionsDTO> examsQuestions);
+        public void DeleteQuestionID(int questionID);
+        public void DeleteExamID(int ExamID);
     }
 }

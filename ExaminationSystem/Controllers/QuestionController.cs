@@ -3,6 +3,7 @@ using ExaminationSystem.DTOs.QuestionDTOs;
 using ExaminationSystem.Helpers;
 using ExaminationSystem.Models;
 using ExaminationSystem.Services.Choices;
+using ExaminationSystem.Services.ExamsQuestions;
 using ExaminationSystem.Services.Questions;
 using ExaminationSystem.ViewModels;
 using ExaminationSystem.ViewModels.QuestionsVMs;
@@ -17,11 +18,13 @@ namespace ExaminationSystem.Controllers
     {
         private readonly IQuestionService _questionService;
         private readonly IChoiceService _choiceService;
+        private readonly IExamsQuestionsService _examsQuestionsService;
         
-        public QuestionController(IQuestionService questionService,IChoiceService choiceService )
+        public QuestionController(IQuestionService questionService,IChoiceService choiceService, IExamsQuestionsService examsQuestionsService )
         {
             _questionService = questionService;
             _choiceService = choiceService;
+            _examsQuestionsService= examsQuestionsService;
         }
         [HttpPost("Add")]
         public IActionResult Add(QuestionRequestVM questionRequestVM)
@@ -44,7 +47,8 @@ namespace ExaminationSystem.Controllers
         public IActionResult Delete(int id)
         {
             _choiceService.DeleteByQuestionID(id);
-           QuestionResponseDTO questionDTO= _questionService.Delete(id);
+            QuestionResponseDTO questionDTO= _questionService.Delete(id);
+            _examsQuestionsService.DeleteQuestionID(questionDTO.ID);
             return Ok(ResultVM<QuestionResponseVM>.Success(questionDTO.MapOne<QuestionResponseVM>(), ""));
 
 
