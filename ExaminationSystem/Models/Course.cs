@@ -12,6 +12,7 @@ namespace ExaminationSystem.Models
         public Instructor Instructor { get; set; }
 
         public HashSet<StudentCourse> StudentCourses { get; set; }
+        public HashSet<Exam>Exams { get; set; }
 
     }
 }

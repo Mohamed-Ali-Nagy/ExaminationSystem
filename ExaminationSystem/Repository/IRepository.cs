@@ -6,7 +6,7 @@ namespace ExaminationSystem.Repository
     {
         public T GetById(int ID,string include=null);
         public IQueryable<T> GetAll();
-
+        public void AddRange(List<T> entities);
         public T Add(T entity);
         public T Update(T entity);
         public void Delete(T entity);

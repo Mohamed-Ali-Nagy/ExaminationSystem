@@ -17,7 +17,10 @@ namespace ExaminationSystem.Repository
             _context.Set<T>().Add(entity);
             return entity;
         }
-
+        public void AddRange(List<T> entities)
+        {
+            _context.Set<T>().AddRange(entities);
+        }
         public void Delete(T entity)
         {
             entity.Deleted = true;

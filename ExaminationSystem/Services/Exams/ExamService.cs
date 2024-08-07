@@ -1,5 +1,7 @@
 ﻿using ExaminationSystem.Data.Enums;
+using ExaminationSystem.DTOs.ExamDTOs;
 using ExaminationSystem.Exceptions;
+using ExaminationSystem.Helpers;
 using ExaminationSystem.Models;
 using ExaminationSystem.Repository;
 
@@ -12,28 +14,31 @@ namespace ExaminationSystem.Services.Exams
         {
             _repository = repository;
         }
-        public Exam Get(int id)
+        //public Exam Get(int id)
+        //{
+        //   return _repository.GetById(id);
+        //}
+        //public IEnumerable<Exam> GetAll()
+        //{
+        //    return _repository.GetAll();
+        //}
+        public int Add(ExamRequestDTO examRequestDTO)
         {
-           return _repository.GetById(id);
-        }
-        public IEnumerable<Exam> GetAll()
-        {
-            return _repository.GetAll();
-        }
-        public Exam Add(Exam exam)
-        {
-            return _repository.Add(exam);
+            var exam = _repository.Add(examRequestDTO.MapOne<Exam>());
+            //var exam2=exam.MapOne<ExamResponseDTO>();
+            _repository.SaveChanges();
+            return exam.ID;
         }
 
-        public void Delete(int id)
-        {
-            Exam exam= _repository.GetById(id);
-            if (exam == null)
-            {
-                throw new BusinessException("Can not find exam with that ID", ErrorCode.ExamIDNotFound);
-            }
-            _repository.Delete(exam);
-            _repository.SaveChanges();
-        }
+        //public void Delete(int id)
+        //{
+        //    Exam exam= _repository.GetById(id);
+        //    if (exam == null)
+        //    {
+        //        throw new BusinessException("Can not find exam with that ID", ErrorCode.ExamIDNotFound);
+        //    }
+        //    _repository.Delete(exam);
+        //    _repository.SaveChanges();
+        //}
     }
 }
